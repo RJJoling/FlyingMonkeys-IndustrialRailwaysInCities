@@ -1,0 +1,300 @@
+<!DOCTYPE html> 
+ <html> 
+ <head> 
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+ <meta charset="utf-8"> 
+ <style type="text/css">  
+ html { height: 100% ; font-size: small} 
+ body { height: 100%; margin: 0px; padding: 0px }
+ #map_canvas {min-height: 100%;height:auto; } 
+ #cBoxes {position:absolute;right:5px; top:50px; background:white}
+</style> 
+
+ <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"> </script>  
+
+ <script language="javascript"> 
+  
+ USGSOverlay.prototype = new google.maps.OverlayView(); 
+function USGSOverlay(bounds, image, map) {
+      this.bounds_ = bounds;
+      this.image_ = image;
+      this.map_ = map;
+      this.div_ = null;
+      this.setMap(map); }
+USGSOverlay.prototype.onAdd = function() {
+      var div = document.createElement("DIV");
+      div.style.border = "none";
+      div.style.borderWidth = "0px";
+      div.style.position = "absolute";
+      var img = document.createElement("img");
+      img.src = this.image_;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      div.appendChild(img);
+      this.div_ = div;
+      this.div_.style.opacity = 0.7;
+      var panes = this.getPanes();
+      panes.overlayImage.appendChild(this.div_);}
+USGSOverlay.prototype.draw = function() {
+        var overlayProjection = this.getProjection();
+        var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+        var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+        var div = this.div_;
+        div.style.left = sw.x + "px";
+        div.style.top = ne.y + "px";
+        div.style.width = (ne.x - sw.x) + "px";
+        div.style.height = (sw.y - ne.y) + "px";} 
+USGSOverlay.prototype.onRemove = function() { 
+ this.div_.parentNode.removeChild(this.div_);} 
+USGSOverlay.prototype.hide = function() { if (this.div_) { this.div_.style.visibility = "hidden";} } 
+USGSOverlay.prototype.show = function() {if (this.div_) {  this.div_.style.visibility = "visible";}} 
+       USGSOverlay.prototype.toggle = function() { 
+ if (this.div_) { 
+  if (this.div_.style.visibility == "hidden") {  
+   this.show(); 
+  } else { 
+  this.hide(); } } } 
+ USGSOverlay.prototype.toggleDOM = function() {
+          if (this.getMap()) {
+            this.setMap(null);
+          } else {
+            this.setMap(this.map_);}}
+ function setOpacR(Raster,textname) { 
+  opac=0.01*parseInt(document.getElementById(textname).value) 
+    Raster.div_.style.opacity= opac } 
+
+ 
+ var map  
+ var  polyindustrialbuffer8183 =[] ; 
+ var polygon= new google.maps.Polygon({ 
+ paths:[ new google.maps.LatLng( 52.094017608237 , 5.08784014209007 ),
+new google.maps.LatLng( 52.0943394979477 , 5.08805760653523 ),
+new google.maps.LatLng( 52.0944391819851 , 5.08819628948815 ),
+new google.maps.LatLng( 52.0950720805025 , 5.08873097934646 ),
+new google.maps.LatLng( 52.0959948602819 , 5.09036069821598 ),
+new google.maps.LatLng( 52.0964748063717 , 5.09102848685109 ),
+new google.maps.LatLng( 52.0966761847771 , 5.09156405238632 ),
+new google.maps.LatLng( 52.097175857059 , 5.09244660988987 ),
+new google.maps.LatLng( 52.0975397235064 , 5.09386076043288 ),
+new google.maps.LatLng( 52.0979400528383 , 5.09492556563193 ),
+new google.maps.LatLng( 52.0981077951349 , 5.09606872318768 ),
+new google.maps.LatLng( 52.0983740993481 , 5.09710386065576 ),
+new google.maps.LatLng( 52.0983979040061 , 5.09727519252534 ),
+new google.maps.LatLng( 52.0984402375617 , 5.09833455474971 ),
+new google.maps.LatLng( 52.0985917386687 , 5.09936725222566 ),
+new google.maps.LatLng( 52.098530685465 , 5.10059874434341 ),
+new google.maps.LatLng( 52.0985799173225 , 5.10183163109062 ),
+new google.maps.LatLng( 52.0984185277209 , 5.10286037114117 ),
+new google.maps.LatLng( 52.0983660366283 , 5.10391853359568 ),
+new google.maps.LatLng( 52.09807355838 , 5.10505908009406 ),
+new google.maps.LatLng( 52.0978857004882 , 5.10625629359055 ),
+new google.maps.LatLng( 52.0975363932115 , 5.10715365511551 ),
+new google.maps.LatLng( 52.0972850524213 , 5.10813364425542 ),
+new google.maps.LatLng( 52.096789793149 , 5.10907154562282 ),
+new google.maps.LatLng( 52.0963832458053 , 5.1101158368692 ),
+new google.maps.LatLng( 52.0958802298238 , 5.1107939475356 ),
+new google.maps.LatLng( 52.095454656085 , 5.11159979812036 ),
+new google.maps.LatLng( 52.0948051167498 , 5.11224322736245 ),
+new google.maps.LatLng( 52.0942196950707 , 5.11303235115365 ),
+new google.maps.LatLng( 52.0936122282825 , 5.11342483655593 ),
+new google.maps.LatLng( 52.0930540973748 , 5.11397766430747 ),
+new google.maps.LatLng( 52.0923138803661 , 5.1142636627405 ),
+new google.maps.LatLng( 52.0916069091515 , 5.11472039480376 ),
+new google.maps.LatLng( 52.0909544696414 , 5.11478887419358 ),
+new google.maps.LatLng( 52.0903184298156 , 5.11503459829527 ),
+new google.maps.LatLng( 52.0902423286349 , 5.11504407368452 ),
+new google.maps.LatLng( 52.0894227325225 , 5.11494963580168 ),
+new google.maps.LatLng( 52.0888006999783 , 5.11501491728136 ),
+new google.maps.LatLng( 52.0883420535187 , 5.11482511994951 ),
+new google.maps.LatLng( 52.0876087792447 , 5.11474063549659 ),
+new google.maps.LatLng( 52.0865548078016 , 5.11408555933529 ),
+new google.maps.LatLng( 52.0860757691791 , 5.11388734398355 ),
+new google.maps.LatLng( 52.085829876174 , 5.11363501096427 ),
+new google.maps.LatLng( 52.0851431464464 , 5.11320821973719 ),
+new google.maps.LatLng( 52.0839597026773 , 5.11171596620685 ),
+new google.maps.LatLng( 52.0836988144429 , 5.11144827579196 ),
+new google.maps.LatLng( 52.0836105595651 , 5.11127573679281 ),
+new google.maps.LatLng( 52.0830581352742 , 5.11057921144254 ),
+new google.maps.LatLng( 52.0819307671933 , 5.10799195342718 ),
+new google.maps.LatLng( 52.0819024376361 , 5.10793657635073 ),
+new google.maps.LatLng( 52.0818970339056 , 5.1079145411031 ),
+new google.maps.LatLng( 52.0815335887952 , 5.10708050942781 ),
+new google.maps.LatLng( 52.080700991652 , 5.10301393026415 ),
+new google.maps.LatLng( 52.080681995411 , 5.10283796401926 ),
+new google.maps.LatLng( 52.0806722254909 , 5.09789368185677 ),
+new google.maps.LatLng( 52.0816803437972 , 5.09322791838683 ),
+new google.maps.LatLng( 52.0835906093368 , 5.0893763772838 ),
+new google.maps.LatLng( 52.0861836863621 , 5.08678141627574 ),
+new google.maps.LatLng( 52.0891617962922 , 5.08574126456242 ),
+new google.maps.LatLng( 52.0892330956836 , 5.08573644135835 ),
+new google.maps.LatLng( 52.0923145165768 , 5.08640144036748 ),
+ new google.maps.LatLng( 52.094017608237 , 5.08784014209007 )], 
+map:map, 
+ clickable:true,
+ fillColor: "#BEBEBE",
+ strokeColor: "", 
+ strokeOpacity:1,
+ fillOpacity:0.7,
+ strokeWeight:1,
+ geodesic:true,
+ zIndex:null});
+polyindustrialbuffer8183.push(polygon); 
+ var  lineindustrialRD6115 =[] ; 
+ var  line = new google.maps.Polyline({ 
+ path: [ new google.maps.LatLng( 52.0896302039818 , 5.10048620148237 ),
+new google.maps.LatLng( 52.0896064039818 , 5.1003149014822 ),
+new google.maps.LatLng( 52.0895351039818 , 5.1003197014822 ),
+new google.maps.LatLng( 52.0895541039817 , 5.10049570148237 ),
+ new google.maps.LatLng( 52.0896302039818 , 5.10048620148237 )] , 
+ map: map , 
+ clickable: true ,
+ strokeColor: " #DAA520 ", 
+ strokeOpacity: 1 ,
+ strokeWeight: 3 ,
+ geodesic: true ,
+ zIndex: null });
+lineindustrialRD6115.push(line); 
+ var  markerscitiesxwithin3627 =[] ; var  marker = new google.maps.Marker({ 
+ position: new google.maps.LatLng(52.0959422039857,5.1104137014926),
+ map:map,
+ title:"citiesxwithin NO: 1",
+ clickable: true,
+ draggable: false,
+ flat: true,
+ visible: true,
+    zIndex: null }); 
+markerscitiesxwithin3627.push(marker); 
+
+function showR(R,boxname, map) {
+  R.setMap(map);
+  document.getElementById(boxname).checked = true; }
+
+function hideR(R,boxname) {
+R.setMap(null);
+document.getElementById(boxname).checked = false; }
+
+function showO(MLPArray,boxname, map ) { 
+for (var i = 0; i < MLPArray.length; i++) { 
+MLPArray[i].setMap(map); } 
+document.getElementById(boxname).checked = true; }
+
+function hideO(MLPArray,boxname) { 
+for (var i = 0; i < MLPArray.length; i++) { 
+MLPArray[i].setMap(null);} 
+document.getElementById(boxname).checked = false; } 
+
+function boxclick(box,MLPArray,boxname, map) { 
+if (box.checked) { showO(MLPArray,boxname, map); 
+}else {  hideO(MLPArray,boxname);} }
+
+function setOpac(MLPArray,textname){
+opacity=0.01*parseInt(document.getElementById(textname).value) 
+for(var i = 0; i < MLPArray.length; i++) {
+MLPArray[i].setOptions({strokeOpacity: opacity, fillOpacity: opacity}); }}
+
+function setOpacL(MLPArray,textname) {
+opacity=0.01*parseInt(document.getElementById(textname).value) 
+for (var i = 0; i < MLPArray.length; i++) {
+MLPArray[i].setOptions({strokeOpacity: opacity});}}
+
+function setLineWeight(MLPArray,textnameW){
+weight=parseInt(document.getElementById(textnameW).value)
+for (var i = 0; i < MLPArray.length; i++){
+MLPArray[i].setOptions({strokeWeight: weight}); } }
+
+function legendDisplay(box,divLegendImage){
+element = document.getElementById(divLegendImage).style;
+if (box.checked){ element.display="block";} else {  element.display="none";}}
+
+function boxclickR(box,R,boxname, map) {
+if (box.checked){
+showR(R,boxname,map); } else { hideR(R,boxname);} }
+
+function legendDisplay(box,divLegendImage){
+element = document.getElementById(divLegendImage).style; 
+if (box.checked){ element.display="block";} else {  element.display="none";}}  
+ function initialize() { 
+ var latlng = new google.maps.LatLng( 52.0896319820798 , 5.10039025752143 ) ; 
+ 
+ var myOptions = { zoom: 15 , 
+ center: latlng , 
+ mapTypeId: google.maps.MapTypeId.HYBRID  ,
+ disableDefaultUI: false  ,
+ disableDoubleClickZoom: false  ,
+  draggable: true  ,
+  keyboardShortcuts:  true  ,
+ mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DEFAULT}  ,
+  navigationControl: true  ,
+ navigationControlOptions: {style: google.maps.NavigationControlStyle.DEFAULT}  ,
+ noClear: false  ,
+ scaleControl: true  ,
+ scaleControlOptions: {style: google.maps.ScaleControlStyle.STANDARD}  ,
+  scrollwheel: true  ,
+ streetViewControl: false } ; 
+ 
+ map= new google.maps.Map(document.getElementById("map_canvas"),myOptions); 
+ map.fitBounds(new google.maps.LatLngBounds(
+ new google.maps.LatLng(52.0806722254909,5.08573644135835),
+ new google.maps.LatLng( 52.0985917386687,5.11504407368452)));  
+ var infowindow = new google.maps.InfoWindow({ content: "",
+                                                        position:event.latLng, disableAutoPan:false, maxWidth :330, pixelOffset :null  }); 
+ google.maps.event.addListener(polyindustrialbuffer8183[0] ,"click",function(event){ 
+infowindow.content="osm_id : 4003706 <br>name : NA <br>type : industrial <br>"; 
+infowindow.position=event.latLng; 
+   infowindow.open(map)});   
+showO(polyindustrialbuffer8183,"polyindustrialbuffer8183box",map); 
+ var infowindow = new google.maps.InfoWindow({ content: "",
+                                                        position:event.latLng, disableAutoPan:false, maxWidth :330, pixelOffset :null  }); 
+ google.maps.event.addListener(lineindustrialRD6115[0] ,"click",function(event){ 
+infowindow.content="osm_id : 4003706 <br>name : NA <br>type : industrial <br>"; 
+infowindow.position=event.latLng; 
+   infowindow.open(map)});   
+showO(lineindustrialRD6115,"lineindustrialRD6115box",map);showO(markerscitiesxwithin3627,"markerscitiesxwithin3627box",map);  google.maps.event.addListener(  map , 'rightclick', function(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    alert('Lat=' + lat + '; Lng=' + lng);});   
+ }
+</script> 
+ </head> 
+ <body onload="initialize()"> 
+  <div id="map_canvas"></div>  
+
+                           
+ <div id="cBoxes"> 
+<table border="0"> 
+ <tr> 
+  <td> 
+                                 <input type="checkbox" id="polyindustrialbuffer8183box" 
+                                 onClick='boxclick(this,polyindustrialbuffer8183,"polyindustrialbuffer8183box",map);' /> <b> Buffer around industrial railway<b> </td> </tr> 
+ 
+ <tr> <td> 
+ <input type="text" id="polyindustrialbuffer8183text" value="50" onChange='setOpac(polyindustrialbuffer8183,"polyindustrialbuffer8183text")' size=3 /> 
+                                 Opacity (0-100 %) </td> </tr> 
+ 
+ <tr>  <td> 
+ <input type="text" 
+                                 id="polyindustrialbuffer8183W" value="1" onChange='
+                                 setLineWeight(polyindustrialbuffer8183,"polyindustrialbuffer8183W")' 
+                                 size=3 /> Line weight (pixels) </td> </tr> 
+  </tr> 
+ </table> 
+ <hr>  
+<table border="0"> 
+ <tr> 
+  <td> 
+                           <input type="checkbox" id="lineindustrialRD6115box" 
+                           onClick='boxclick(this,lineindustrialRD6115,"lineindustrialRD6115box",map);' /> <b> </tr>Industrial railway<b> </td> 
+ 
+ <tr>  <td> 
+ <input type="text" id="lineindustrialRD6115text" value="100" onChange='setOpacL(lineindustrialRD6115,"lineindustrialRD6115text")' size=3 /> 
+                           Opacity (0-100 %) </td>  </tr>
+<tr> 
+  <td> 
+ <input type="text" id="lineindustrialRD6115W" value="1" onChange='setLineWeight(lineindustrialRD6115,"lineindustrialRD6115W")' size=3 /> 
+                           Line weight (pixels) </td>  </tr> 
+ </tr> 
+ </table> 
+ <hr>  
+<input type="checkbox" id="markerscitiesxwithin3627box" onClick='boxclick(this,markerscitiesxwithin3627,"markerscitiesxwithin3627box",map);' /> <b>City within buffer<b> <hr/> </div> 
+ </body>  
+  </html>

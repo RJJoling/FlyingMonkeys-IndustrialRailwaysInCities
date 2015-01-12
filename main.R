@@ -54,7 +54,7 @@ plot(cities.within, add = TRUE)
 
 mtext(side = 1, "Longitude", line = 2.5, cex=1.1)
 mtext(side = 2, "Latitude", line = 2.5, cex=1.1)
-mtext(side = 3, line = 1, cityname, , cex = 2)
+mtext(side = 3, line = 1, paste("Industrial railway", cityname), , cex = 2)
 
 box()
 grid()
